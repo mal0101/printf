@@ -1,53 +1,42 @@
 #include "main.h"
 /**
- * _printf - does 'printf''s role
- * lista is a list of arguments
- * while loop, iterates characters through our format input
+ * _printf- does printf's role
  * @format: character string
- * Return: if format == NULL, -1
- * else, printchar
+ * Return: printchar
  */
 int _printf(const char *format, ...)
 {
-	int printchar = 0;
 	va_list lista;
 
-	if (format == NULL)
-		return (-1);
 	va_start(lista, format);
+
+	int printchar = 0;
+
 	while (*format)
 	{
-		if (*format != '%')
-		{
-			puts(format);
-			printchar++;
-		}
-		else
-		{
+		if (*format == '%4){
 			format++;
-			if (*format == '\0')
-				break;
-			if (*format == 'c')
-			{
-				char c = va_arg(lista, int);
 
-				puts(&c);
-				printchar++;
+			switch (*format){
+				case 'c':
+					putchar(va_arg(lista,int));
+					break;
+				case 's': {
+						  const char *str = va_sarg(lista, const char *);
+						  while (*str) {
+							  putchar(*str);
+							  str++;
+						  }
+						  break;
+					  }
+				case ' % ':
+					  putchar(' % ');
+					  break;
 			}
-			else if (*format == 's')
-			{
-				char *str = va_arg(lista, char*);
-				int str_len = 0;
-
-				while (str[str_len] != '\0')
-				{
-					str_len++;
-				}
-				puts( str);
-				printchar += str_len;
-			}
-		}
+		} else
+			putchar(*format);
 		format++;
+		printchar++;
 	}
 	va_end(lista);
 	return (printchar);
