@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			write(1, format, 1);
+			puts(format);
 			printchar++;
 		}
 		else
@@ -31,7 +31,7 @@ int _printf(const char *format, ...)
 			{
 				char c = va_arg(lista, int);
 
-				write(1, &c, 1);
+				puts(&c);
 				printchar++;
 			}
 			else if (*format == 's')
@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 				{
 					str_len++;
 				}
-				write(1, str, str_len);
+				puts( str);
 				printchar += str_len;
 			}
 		}
