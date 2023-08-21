@@ -26,20 +26,22 @@ int _printf(const char *format, ...)
 		{
 			putch(format[y]);
 		}
-		else if (format[y] == '%' && format[y + 1] == 'c')
+		else
 		{
-			putch(va_arg(lista, int));
 			y++;
-		}
-		else if (format[y] == '%' && format[y + 1] == 's')
-		{
-			strcount = _puts(va_arg(lista, char*));
-			y++;
-			x += (strcount - 1);
-		}
-		else if (format[y] == '%' && format[y + 1] == '%')
-		{
-			putch('%');
+			switch (format[y])
+			{
+				case 'c':
+					putch(va_arg(lista, int));
+					break;
+				case 's':
+					strcount = _puts(va_arg(lista, char*));
+					x += (strcount - 1);
+					break;
+				case '%':
+					putch('%');
+					break;
+			}
 		}
 		x++;
 	}
