@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 
 	va_start(lista, format);
 
-	for (y = 0; format[y] != '\0'; y++)
+	for (y = 0; format && format[y] != '\0'; y++)
 	{
 		if (format[y] != '%')
 		{
@@ -22,7 +22,7 @@ int _printf(const char *format, ...)
 		{
 			unsigned int str;
 
-			str = strp(va_arg(lista, char*));
+			str = strp(va_arg(lista, char *));
 			y++;
 			x += (str - 1);
 		}
@@ -36,6 +36,6 @@ int _printf(const char *format, ...)
 			putch('%');
 		}
 	}
-	va_end(lista);
-	return (x);
+		va_end(lista);
+		return (x);
 }
