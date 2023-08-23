@@ -1,11 +1,10 @@
 #include "main.h"
 /**
- * _puts - print str
- * @c: str
- * Return: numbr of bytes
- * c7sab is just like count
+ * strp - prints string of char
+ * @c: array to character string
+ * Return: list
  */
-int _puts(char *c)
+int strp(char *c)
 {
 	int c7sab = 0;
 
